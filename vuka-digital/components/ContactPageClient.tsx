@@ -2,6 +2,7 @@
 import { FormEvent, useState } from 'react'
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import SectionHeading from '@/components/SectionHeading'
+import Reveal from '@/components/Reveal'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -28,13 +29,16 @@ export default function ContactPageClient() {
 
   return (
     <div className="px-6 pb-24 pt-40">
-      <SectionHeading
-        eyebrow="Contact"
-        title="Let's Wake Up Your Brand"
-        description="Tell us about your project and we will get back to you within one business day."
-      />
+      <Reveal>
+        <SectionHeading
+          eyebrow="Contact"
+          title="Let's Wake Up Your Brand"
+          description="Tell us about your project and we will get back to you within one business day."
+        />
+      </Reveal>
 
       <div className="mx-auto mt-16 grid max-w-6xl gap-12 lg:grid-cols-2">
+        <Reveal>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2">
             <label htmlFor="name" className="text-sm text-white/70">Name</label>
@@ -84,11 +88,13 @@ export default function ContactPageClient() {
             </p>
           )}
         </form>
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <div className="flex flex-col gap-6">
           <a
             href="tel:+27720373679"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:border-brand-blue/50"
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50"
           >
             <Phone className="text-brand-blue" size={24} />
             <div>
@@ -100,7 +106,7 @@ export default function ContactPageClient() {
             href="https://wa.me/27728331515"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:border-brand-green/50"
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-green/50"
           >
             <MessageCircle className="text-brand-green" size={24} />
             <div>
@@ -110,7 +116,7 @@ export default function ContactPageClient() {
           </a>
           <a
             href="mailto:info@vukadigital.co.za"
-            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:border-brand-blue/50"
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50"
           >
             <Mail className="text-brand-blue" size={24} />
             <div>
@@ -134,6 +140,7 @@ export default function ContactPageClient() {
             />
           </div>
         </div>
+        </Reveal>
       </div>
     </div>
   )

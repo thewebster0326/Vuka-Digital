@@ -22,6 +22,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -32,41 +33,52 @@ export default function Navbar() {
   }
 
   return (
-    <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'border-b border-white/10 bg-bg/80 py-3 backdrop-blur-lg' : 'bg-transparent py-6'
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+      <nav
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-bg-alt/90 backdrop-blur-lg transition-all duration-300 ${
+          scrolled ? 'px-5 py-3 shadow-lg shadow-black/50' : 'px-6 py-4 shadow-md shadow-black/30'
+        }`}
+      >
         <Logo />
         <div className="hidden items-center gap-8 md:flex">
-          {LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`relative text-sm font-medium tracking-wide text-white/80 transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gradient-to-r after:from-brand-blue after:to-brand-green after:transition-all after:duration-300 hover:text-white hover:after:w-full ${
-                pathname === link.href ? 'text-white after:w-full' : ''
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {LINKS.map((link, i) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`group relative text-sm font-semibold uppercase tracking-wide transition-colors duration-300 ${
+                  isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                }`}
+              >
+                <span className={i % 2 === 0 ? 'text-brand-blue' : 'text-brand-green'}>
+                  {link.label.charAt(0)}
+                </span>
+                {link.label.slice(1)}
+                <span
+                  className={`absolute -bottom-2 left-0 h-0.5 rounded-full bg-gradient-to-r from-brand-blue to-brand-green transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </Link>
+            )
+          })}
         </div>
         <div className="hidden md:block">
           <CTAButton href="/contact">Get a Quote</CTAButton>
         </div>
         <button
           aria-label="Toggle menu"
-          className="text-white md:hidden"
+          className="text-white transition-transform duration-200 active:scale-90 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
       {open && (
-        <div className="flex flex-col gap-4 border-t border-white/10 bg-bg/95 px-6 py-6 md:hidden">
+        <div className="mx-auto mt-2 flex max-w-7xl origin-top animate-[fadeIn_0.2s_ease-out] flex-col gap-4 rounded-2xl border border-white/10 bg-bg-alt/95 px-6 py-6 shadow-lg shadow-black/50 backdrop-blur-lg md:hidden">
           {LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="text-white/80 hover:text-white">
+            <Link key={link.href} href={link.href} className="text-white/80 transition-colors hover:text-white">
               {link.label}
             </Link>
           ))}

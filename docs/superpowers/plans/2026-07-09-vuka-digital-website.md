@@ -6,7 +6,7 @@
 
 **Architecture:** Next.js 14 (App Router, TypeScript, Tailwind CSS) scaffolded into a `vuka-digital/` subfolder of the repo. Content lives in static typed data files (`lib/data/*.ts`). A Three.js globe (`@react-three/fiber` + `@react-three/drei`) renders client-side only in the hero. Framer Motion drives scroll/hover animation elsewhere. The Contact page posts to a Next.js API route (`app/api/contact/route.ts`) that sends the enquiry email via Resend. No CMS, no blog.
 
-**Tech Stack:** Next.js 14, TypeScript, Tailwind CSS, Three.js, @react-three/fiber, @react-three/drei, Framer Motion, lucide-react (icons), Resend (transactional email), Vitest (data-layer unit tests), npm.
+**Tech Stack:** Next.js 16 (App Router), TypeScript, Tailwind CSS v4 (CSS-first `@theme` config, no `tailwind.config.ts`), Three.js, @react-three/fiber, @react-three/drei, Framer Motion, lucide-react (icons), Resend (transactional email), Vitest (data-layer unit tests), npm. (Note: the plan was originally written against Next 14/Tailwind v3; Task 1's `create-next-app@latest` pulled Next 16/Tailwind v4 instead. Task 2 below reflects the v4 CSS-first theme syntax — all Tailwind utility class names used throughout the plan, e.g. `bg-bg`, `text-brand-green`, `font-heading`, are unaffected.)
 
 ## Global Constraints
 
@@ -67,13 +67,12 @@ git commit -m "chore: scaffold Next.js app with Tailwind, Three.js, and Framer M
 **Files:**
 - Create: `vuka-digital/public/logo.png` (copied from the user-supplied transparent logo)
 - Create: `vuka-digital/public/favicon.png` (copied from the user-supplied circular logo)
-- Modify: `vuka-digital/tailwind.config.ts`
 - Modify: `vuka-digital/app/globals.css`
 - Modify: `vuka-digital/app/layout.tsx`
 
 **Interfaces:**
-- Consumes: the scaffold from Task 1.
-- Produces: Tailwind color tokens `bg`, `bg-alt`, `brand-blue`, `brand-green` and font families `font-sans` (Inter) / `font-heading` (Space Grotesk) that every later component/page relies on. Produces `/logo.png` and `/favicon.png` static assets used by `Logo` (Task 4) and `layout.tsx` metadata.
+- Consumes: the scaffold from Task 1 (Next.js 16, Tailwind CSS v4 — CSS-first `@theme` config, no `tailwind.config.ts` file).
+- Produces: Tailwind color utilities `bg-bg`/`text-bg`/etc, `bg-bg-alt`, `bg-brand-blue`/`text-brand-blue`/etc, `bg-brand-green`/`text-brand-green`/etc, and font utilities `font-sans` (Inter) / `font-heading` (Space Grotesk) that every later component/page relies on. Produces `/logo.png` and `/favicon.png` static assets used by `Logo` (Task 4) and `layout.tsx` metadata.
 
 - [ ] **Step 1: Copy the logo assets into `public/`**
 
@@ -84,39 +83,21 @@ cp "C:\Users\ubzma\Downloads\Vuka Digital.png" "C:\Users\ubzma\Desktop\shilajit\
 ```
 Expected: both files exist under `vuka-digital/public/`.
 
-- [ ] **Step 2: Replace `tailwind.config.ts`**
+- [ ] **Step 2: Replace `app/globals.css`**
 
-```ts
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        bg: '#05070a',
-        'bg-alt': '#0b0f14',
-        'brand-blue': '#2E7CF6',
-        'brand-green': '#39FF6A',
-      },
-      fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        heading: ['var(--font-heading)', 'sans-serif'],
-      },
-    },
-  },
-  plugins: [],
-}
-
-export default config
-```
-
-- [ ] **Step 3: Replace `app/globals.css`**
+Tailwind v4 defines theme tokens directly in CSS via `@theme`, instead of `tailwind.config.ts`. A `--color-*` variable generates `bg-*`/`text-*`/`border-*` utilities; a `--font-*` variable generates a `font-*` utility.
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #05070a;
+  --color-bg-alt: #0b0f14;
+  --color-brand-blue: #2E7CF6;
+  --color-brand-green: #39FF6A;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-heading), sans-serif;
+}
 
 body {
   background-color: #05070a;
@@ -128,7 +109,7 @@ body {
 }
 ```
 
-- [ ] **Step 4: Replace `app/layout.tsx`**
+- [ ] **Step 3: Replace `app/layout.tsx`**
 
 ```tsx
 import type { Metadata } from 'next'
@@ -163,12 +144,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 5: Verify build**
+- [ ] **Step 4: Verify build**
 
 Run (from `vuka-digital/`): `npm run build`
 Expected: `Compiled successfully`.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 5: Commit**
 
 ```bash
 git add vuka-digital

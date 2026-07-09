@@ -3,9 +3,12 @@ import { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-function GlobePoints() {
+interface GlobePointsProps {
+  count: number
+}
+
+function GlobePoints({ count }: GlobePointsProps) {
   const groupRef = useRef<THREE.Group>(null)
-  const count = 900
 
   const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(count * 3)
@@ -30,7 +33,7 @@ function GlobePoints() {
     }
 
     return { positions, colors }
-  }, [])
+  }, [count])
 
   useFrame((state, delta) => {
     if (!groupRef.current) return
@@ -61,12 +64,19 @@ function GlobePoints() {
   )
 }
 
-export default function Hero3D() {
+interface Hero3DProps {
+  simplified?: boolean
+}
+
+export default function Hero3D({ simplified = false }: Hero3DProps) {
   return (
     <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 1.5]}>
+      <Canvas
+        camera={{ position: [0, 0, 6], fov: 45 }}
+        dpr={simplified ? [1, 1] : [1, 1.5]}
+      >
         <ambientLight intensity={0.6} />
-        <GlobePoints />
+        <GlobePoints count={simplified ? 380 : 900} />
       </Canvas>
     </div>
   )

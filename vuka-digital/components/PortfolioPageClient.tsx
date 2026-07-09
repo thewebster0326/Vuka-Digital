@@ -4,6 +4,7 @@ import PortfolioCard from '@/components/PortfolioCard'
 import SectionHeading from '@/components/SectionHeading'
 import Reveal from '@/components/Reveal'
 import AmbientGlow from '@/components/AmbientGlow'
+import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import { PORTFOLIO } from '@/lib/data/portfolio'
 
 export default function PortfolioPageClient() {
@@ -16,7 +17,8 @@ export default function PortfolioPageClient() {
   const filtered = active === 'All' ? PORTFOLIO : PORTFOLIO.filter((item) => item.category === active)
 
   return (
-    <div className="relative px-6 pb-24 pt-40">
+    <div className="relative overflow-hidden px-6 pb-24 pt-40">
+      <StarfieldBackgroundWrapper />
       <AmbientGlow />
       <Reveal>
         <SectionHeading

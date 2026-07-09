@@ -4,6 +4,7 @@ import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import SectionHeading from '@/components/SectionHeading'
 import Reveal from '@/components/Reveal'
 import AmbientGlow from '@/components/AmbientGlow'
+import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -29,7 +30,8 @@ export default function ContactPageClient() {
   }
 
   return (
-    <div className="relative px-6 pb-24 pt-40">
+    <div className="relative overflow-hidden px-6 pb-24 pt-40">
+      <StarfieldBackgroundWrapper />
       <AmbientGlow />
       <Reveal>
         <SectionHeading

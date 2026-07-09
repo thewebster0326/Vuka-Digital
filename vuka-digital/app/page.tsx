@@ -10,6 +10,7 @@ import ServiceCard from '@/components/ServiceCard'
 import PortfolioCard from '@/components/PortfolioCard'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
+import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import Typewriter from '@/components/Typewriter'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
@@ -161,7 +162,8 @@ export default function Home() {
       </section>
 
       <Reveal>
-        <section className="border-t border-white/10 bg-gradient-to-br from-brand-blue/10 to-brand-green/10 px-6 py-24 text-center">
+        <section className="relative overflow-hidden border-t border-white/10 bg-gradient-to-br from-brand-blue/10 to-brand-green/10 px-6 py-24 text-center">
+          <StarfieldBackgroundWrapper />
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to Wake Up Your Brand?
           </h2>

@@ -4,6 +4,7 @@ import SectionHeading from '@/components/SectionHeading'
 import CTAButton from '@/components/CTAButton'
 import Reveal from '@/components/Reveal'
 import AmbientGlow from '@/components/AmbientGlow'
+import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import { Compass, Heart, Lightbulb, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -36,7 +37,8 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <div className="relative px-6 pb-24 pt-40">
+    <div className="relative overflow-hidden px-6 pb-24 pt-40">
+      <StarfieldBackgroundWrapper />
       <AmbientGlow />
       <Reveal>
         <SectionHeading

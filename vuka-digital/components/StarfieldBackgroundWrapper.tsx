@@ -2,9 +2,9 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
-const Hero3D = dynamic(() => import('./Hero3D'), { ssr: false })
+const StarfieldBackground = dynamic(() => import('./StarfieldBackground'), { ssr: false })
 
-export default function Hero3DWrapper() {
+export default function StarfieldBackgroundWrapper() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -14,5 +14,5 @@ export default function Hero3DWrapper() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  return <Hero3D simplified={isMobile} />
+  return <StarfieldBackground simplified={isMobile} />
 }

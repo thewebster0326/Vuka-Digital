@@ -4,6 +4,7 @@ import ServiceCard from '@/components/ServiceCard'
 import CTAButton from '@/components/CTAButton'
 import Reveal from '@/components/Reveal'
 import AmbientGlow from '@/components/AmbientGlow'
+import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import { SERVICES } from '@/lib/data/services'
 
 export const metadata: Metadata = {
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="relative px-6 pb-24 pt-40">
+    <div className="relative overflow-hidden px-6 pb-24 pt-40">
+      <StarfieldBackgroundWrapper />
       <AmbientGlow />
       <Reveal>
         <SectionHeading

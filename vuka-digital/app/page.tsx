@@ -1,8 +1,9 @@
 'use client'
+import { useRef } from 'react'
 import { ArrowRight, TrendingUp, Users, Award, Rocket } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import CTAButton from '@/components/CTAButton'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
@@ -23,10 +24,20 @@ const STATS = [
 ]
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.94])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+
   return (
     <>
-      <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32">
-        <div className="absolute inset-0 -z-20">
+      <motion.section
+        ref={heroRef}
+        style={{ opacity: heroOpacity }}
+        className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
+      >
+        <motion.div style={{ y: bgY }} className="absolute inset-0 -z-20">
           <Image
             src="https://picsum.photos/seed/vuka-hero-network/1920/1080"
             alt=""
@@ -36,12 +47,13 @@ export default function Home() {
             className="object-cover opacity-15"
           />
           <div className="absolute inset-0 bg-bg/85" />
-        </div>
+        </motion.div>
         <Hero3DWrapper />
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{ scale: heroScale }}
           className="mx-auto max-w-3xl text-center"
         >
           <span className="mb-6 inline-block rounded-full border border-brand-green/40 px-4 py-1 text-xs uppercase tracking-[0.3em] text-brand-green">
@@ -79,7 +91,7 @@ export default function Home() {
             </CTAButton>
           </motion.div>
         </motion.div>
-      </section>
+      </motion.section>
 
       <section className="border-y border-white/10 bg-bg-alt px-6 py-12">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 sm:grid-cols-4">

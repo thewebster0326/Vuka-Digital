@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PageTransition from '@/components/PageTransition'
+import ScrollProgress from '@/components/ScrollProgress'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' })
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} bg-bg font-sans text-white antialiased`}
       >
+        <ScrollProgress />
         <Navbar />
         <main>
           <PageTransition>{children}</PageTransition>

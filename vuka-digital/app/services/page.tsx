@@ -3,6 +3,7 @@ import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
 import CTAButton from '@/components/CTAButton'
 import Reveal from '@/components/Reveal'
+import AmbientGlow from '@/components/AmbientGlow'
 import { SERVICES } from '@/lib/data/services'
 
 export const metadata: Metadata = {
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="px-6 pb-24 pt-40">
+    <div className="relative px-6 pb-24 pt-40">
+      <AmbientGlow />
       <Reveal>
         <SectionHeading
           eyebrow="Our Services"

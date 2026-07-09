@@ -3,6 +3,7 @@ import Image from 'next/image'
 import SectionHeading from '@/components/SectionHeading'
 import CTAButton from '@/components/CTAButton'
 import Reveal from '@/components/Reveal'
+import AmbientGlow from '@/components/AmbientGlow'
 import { Compass, Heart, Lightbulb, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -35,7 +36,8 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <div className="px-6 pb-24 pt-40">
+    <div className="relative px-6 pb-24 pt-40">
+      <AmbientGlow />
       <Reveal>
         <SectionHeading
           eyebrow="About Vuka Digital"

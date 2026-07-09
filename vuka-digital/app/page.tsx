@@ -11,14 +11,15 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
 import Typewriter from '@/components/Typewriter'
 import Reveal from '@/components/Reveal'
+import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
 import { PORTFOLIO } from '@/lib/data/portfolio'
 
 const STATS = [
-  { icon: Users, value: '50+', label: 'Brands Grown' },
-  { icon: TrendingUp, value: '3.5x', label: 'Avg. Traffic Growth' },
-  { icon: Award, value: '10', label: 'Services Offered' },
-  { icon: Rocket, value: '24/7', label: 'Campaign Monitoring' },
+  { icon: Users, value: 50, suffix: '+', label: 'Brands Grown' },
+  { icon: TrendingUp, value: 3.5, decimals: 1, suffix: 'x', label: 'Avg. Traffic Growth' },
+  { icon: Award, value: 10, suffix: '', label: 'Services Offered' },
+  { icon: Rocket, value: 24, suffix: '/7', label: 'Campaign Monitoring' },
 ]
 
 export default function Home() {
@@ -87,7 +88,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-2 text-center">
                 <stat.icon className="text-brand-green" size={28} />
                 <span className="font-heading text-2xl font-bold text-white sm:text-3xl">
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} decimals={stat.decimals ?? 0} suffix={stat.suffix} />
                 </span>
                 <span className="text-xs uppercase tracking-wide text-white/50">{stat.label}</span>
               </div>

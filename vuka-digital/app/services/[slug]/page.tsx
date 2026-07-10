@@ -96,18 +96,24 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <Link
-              href="/services"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-brand-green"
-            >
-              &larr; All Services
-            </Link>
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-brand-blue/20 to-brand-green/20 p-4 text-brand-green">
-              <service.icon size={32} />
+            <div className="mb-8 text-left">
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-white/60 transition-all duration-300 hover:-translate-x-0.5 hover:border-brand-green/50 hover:bg-brand-green/10 hover:text-brand-green"
+              >
+                &larr; All Services
+              </Link>
             </div>
-            <span className="mb-4 inline-block rounded-full border border-brand-green/40 px-4 py-1 text-xs uppercase tracking-[0.3em] text-brand-green">
-              Our Services
-            </span>
+            <div className="mb-6 flex justify-center">
+              <div className="inline-flex rounded-2xl bg-gradient-to-br from-brand-blue/20 to-brand-green/20 p-4 text-brand-green">
+                <service.icon size={32} />
+              </div>
+            </div>
+            <div className="mb-4">
+              <span className="inline-block rounded-full border border-brand-green/40 px-4 py-1 text-xs uppercase tracking-[0.3em] text-brand-green">
+                Our Services
+              </span>
+            </div>
             <h1 className="font-heading text-4xl font-bold leading-tight text-white sm:text-5xl">
               {service.tagline}
             </h1>

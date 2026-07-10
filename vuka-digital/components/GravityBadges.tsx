@@ -1,27 +1,29 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import type Matter from 'matter-js'
 
 interface Badge {
   label: string
+  href: string
   highlight?: boolean
 }
 
 const BADGES: Badge[] = [
-  { label: 'Web Design' },
-  { label: 'SEO' },
-  { label: 'Branding' },
-  { label: 'Social Media' },
-  { label: 'Paid Ads' },
-  { label: 'Content', highlight: true },
-  { label: 'Strategy' },
-  { label: 'Copywriting' },
-  { label: 'Analytics' },
+  { label: 'Web Design', href: '/services/web-design' },
+  { label: 'SEO', href: '/services/seo' },
+  { label: 'Branding', href: '/services/branding-identity' },
+  { label: 'Social Media', href: '/services/social-media-management' },
+  { label: 'Paid Ads', href: '/services/paid-ads' },
+  { label: 'Content', href: '/services', highlight: true },
+  { label: 'Strategy', href: '/services' },
+  { label: 'Copywriting', href: '/services' },
+  { label: 'Analytics', href: '/services' },
 ]
 
 export default function GravityBadges() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const badgeRefs = useRef<(HTMLDivElement | null)[]>([])
+  const badgeRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function GravityBadges() {
       const engine = M.Engine.create()
       engine.gravity.y = 1
 
-      const elements = badgeRefs.current.filter((el): el is HTMLDivElement => !!el)
+      const elements = badgeRefs.current.filter((el): el is HTMLAnchorElement => !!el)
       const bodies = elements.map((el, i) => {
         const w = el.offsetWidth
         const h = el.offsetHeight
@@ -95,18 +97,19 @@ export default function GravityBadges() {
   return (
     <div ref={containerRef} className="pointer-events-none absolute inset-x-0 bottom-0 h-64 overflow-hidden">
       {BADGES.map((badge, i) => (
-        <div
+        <Link
           key={badge.label}
+          href={badge.href}
           ref={(el) => {
             badgeRefs.current[i] = el
           }}
-          className={`absolute left-0 top-0 whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium shadow-lg transition-opacity duration-500 ${
+          className={`pointer-events-auto absolute left-0 top-0 whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium shadow-lg transition-opacity duration-500 hover:brightness-110 ${
             ready ? 'opacity-100' : 'opacity-0'
           } ${badge.highlight ? 'bg-brand-green text-bg' : 'bg-white/10 text-white backdrop-blur-sm'}`}
           style={{ willChange: 'transform' }}
         >
           {badge.label}
-        </div>
+        </Link>
       ))}
     </div>
   )

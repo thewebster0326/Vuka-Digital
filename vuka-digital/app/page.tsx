@@ -87,7 +87,7 @@ export default function Home() {
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <CTAButton href="/contact">Get a Free Quote</CTAButton>
-            <CTAButton href="/portfolio" variant="outline">
+            <CTAButton href="/portfolio" variant="secondary">
               See Our Work
             </CTAButton>
           </motion.div>

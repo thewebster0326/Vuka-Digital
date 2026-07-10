@@ -6,7 +6,6 @@ import type Matter from 'matter-js'
 interface Badge {
   label: string
   href: string
-  highlight?: boolean
 }
 
 const BADGES: Badge[] = [
@@ -15,7 +14,7 @@ const BADGES: Badge[] = [
   { label: 'Branding', href: '/services/branding-identity' },
   { label: 'Social Media', href: '/services/social-media-management' },
   { label: 'Paid Ads', href: '/services/paid-ads' },
-  { label: 'Content', href: '/services', highlight: true },
+  { label: 'Content', href: '/services' },
   { label: 'Strategy', href: '/services' },
   { label: 'Copywriting', href: '/services' },
   { label: 'Analytics', href: '/services' },
@@ -103,9 +102,13 @@ export default function GravityBadges() {
           ref={(el) => {
             badgeRefs.current[i] = el
           }}
-          className={`pointer-events-auto absolute left-0 top-0 whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium shadow-lg transition-opacity duration-500 hover:brightness-110 ${
+          className={`pointer-events-auto absolute left-0 top-0 whitespace-nowrap rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-sm transition-all duration-300 ${
             ready ? 'opacity-100' : 'opacity-0'
-          } ${badge.highlight ? 'bg-brand-green text-bg' : 'bg-white/10 text-white backdrop-blur-sm'}`}
+          } ${
+            i % 2 === 0
+              ? 'hover:border-brand-blue hover:bg-brand-blue hover:text-bg'
+              : 'hover:border-brand-green hover:bg-brand-green hover:text-bg'
+          }`}
           style={{ willChange: 'transform' }}
         >
           {badge.label}

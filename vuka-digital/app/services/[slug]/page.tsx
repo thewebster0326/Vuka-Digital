@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <p className="mx-auto mt-6 max-w-xl text-white/70">{service.overview}</p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <CTAButton href="/contact">Get a Free Quote</CTAButton>
-              <CTAButton href="/services" variant="outline">
+              <CTAButton href="/services" variant="secondary">
                 View All Services
               </CTAButton>
             </div>

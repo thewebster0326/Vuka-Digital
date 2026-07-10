@@ -54,7 +54,20 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
         requestAnimationFrame(build)
         return
       }
-      const fontSize = Math.max(26, Math.min(60, width / 11))
+      const measureCanvas = document.createElement('canvas')
+      const measureCtx = measureCanvas.getContext('2d')
+      if (!measureCtx) return
+
+      const maxTextWidth = width * 0.92
+      let fontSize = Math.min(60, width / 11)
+      measureCtx.font = `bold ${fontSize}px sans-serif`
+      let widestLine = Math.max(...lines.map((line) => measureCtx.measureText(line).width))
+      while (widestLine > maxTextWidth && fontSize > 12) {
+        fontSize -= 1
+        measureCtx.font = `bold ${fontSize}px sans-serif`
+        widestLine = Math.max(...lines.map((line) => measureCtx.measureText(line).width))
+      }
+
       const lineHeight = fontSize * 1.25
       height = lineHeight * lines.length + fontSize * 0.5
 

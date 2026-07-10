@@ -7,14 +7,15 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import CTAButton from '@/components/CTAButton'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
+import PortfolioCard from '@/components/PortfolioCard'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
 import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import ParticleTextEffect from '@/components/ParticleTextEffect'
-import CircularGallery from '@/components/CircularGallery'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
+import { PORTFOLIO } from '@/lib/data/portfolio'
 
 const STATS = [
   { icon: Users, value: 50, suffix: '+', label: 'Brands Grown' },
@@ -123,14 +124,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-bg-alt py-24">
-        <div className="px-6">
-          <Reveal>
-            <SectionHeading eyebrow="Our Work" title="Recent Wins for Real Brands" />
-          </Reveal>
+      <section className="bg-bg-alt px-6 py-24">
+        <Reveal>
+          <SectionHeading eyebrow="Our Work" title="Recent Wins for Real Brands" />
+        </Reveal>
+        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PORTFOLIO.slice(0, 3).map((item, i) => (
+            <Reveal key={item.slug} delay={i * 0.1}>
+              <PortfolioCard item={item} />
+            </Reveal>
+          ))}
         </div>
-        <CircularGallery />
-        <div className="px-6 text-center">
+        <div className="mt-12 text-center">
           <Link href="/portfolio" className="inline-flex items-center gap-2 text-brand-green transition-colors hover:text-white">
             View full portfolio <ArrowRight size={18} />
           </Link>

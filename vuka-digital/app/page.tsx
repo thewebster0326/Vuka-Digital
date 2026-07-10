@@ -13,6 +13,7 @@ import Hero3DWrapper from '@/components/Hero3DWrapper'
 import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import MatrixRain from '@/components/MatrixRain'
 import ParticleTextEffect from '@/components/ParticleTextEffect'
+import WhyChooseUs from '@/components/WhyChooseUs'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
@@ -127,6 +128,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <WhyChooseUs />
 
       <section className="bg-bg-alt px-6 py-24">
         <Reveal>

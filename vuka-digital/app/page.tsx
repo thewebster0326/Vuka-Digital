@@ -11,6 +11,7 @@ import PortfolioCard from '@/components/PortfolioCard'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
 import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
+import MatrixRain from '@/components/MatrixRain'
 import ParticleTextEffect from '@/components/ParticleTextEffect'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
@@ -38,6 +39,9 @@ export default function Home() {
         style={{ opacity: heroOpacity }}
         className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
       >
+        <div className="absolute inset-0 -z-30 opacity-40">
+          <MatrixRain />
+        </div>
         <motion.div style={{ y: bgY }} className="absolute inset-0 -z-20">
           <Image
             src="https://picsum.photos/seed/vuka-hero-network/1920/1080"

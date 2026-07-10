@@ -14,6 +14,7 @@ import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import MatrixRain from '@/components/MatrixRain'
 import ParticleTextEffect from '@/components/ParticleTextEffect'
 import WhyChooseUs from '@/components/WhyChooseUs'
+import ProcessSection from '@/components/ProcessSection'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
@@ -128,6 +129,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <ProcessSection />
 
       <WhyChooseUs />
 

@@ -17,21 +17,6 @@ interface Particle {
   color: string
 }
 
-function lerpColor(a: string, b: string, t: number) {
-  const ah = parseInt(a.slice(1), 16)
-  const bh = parseInt(b.slice(1), 16)
-  const ar = (ah >> 16) & 0xff
-  const ag = (ah >> 8) & 0xff
-  const ab = ah & 0xff
-  const br = (bh >> 16) & 0xff
-  const bg = (bh >> 8) & 0xff
-  const bb = bh & 0xff
-  const rr = Math.round(ar + (br - ar) * t)
-  const rg = Math.round(ag + (bg - ag) * t)
-  const rb = Math.round(ab + (bb - ab) * t)
-  return `rgb(${rr}, ${rg}, ${rb})`
-}
-
 export default function ParticleTextEffect({ lines, className = '' }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
@@ -99,7 +84,6 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
         for (let x = 0; x < width; x += gap) {
           const alpha = imageData.data[(y * width + x) * 4 + 3]
           if (alpha > 128) {
-            const t = x / width
             particles.push({
               x: Math.random() * width,
               y: Math.random() * height,
@@ -108,7 +92,7 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
               vx: 0,
               vy: 0,
               size: Math.random() * 1.3 + 1,
-              color: lerpColor('#2E7CF6', '#39FF6A', t),
+              color: '#FFFFFF',
             })
           }
         }

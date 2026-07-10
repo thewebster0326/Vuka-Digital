@@ -7,15 +7,14 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import CTAButton from '@/components/CTAButton'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
-import PortfolioCard from '@/components/PortfolioCard'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
 import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
-import Typewriter from '@/components/Typewriter'
+import ParticleTextEffect from '@/components/ParticleTextEffect'
+import CircularGallery from '@/components/CircularGallery'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
-import { PORTFOLIO } from '@/lib/data/portfolio'
 
 const STATS = [
   { icon: Users, value: 50, suffix: '+', label: 'Brands Grown' },
@@ -60,16 +59,8 @@ export default function Home() {
           <span className="mb-6 inline-block rounded-full border border-brand-green/40 px-4 py-1 text-xs uppercase tracking-[0.3em] text-brand-green">
             Digital Marketing Agency
           </span>
-          <h1 className="font-heading text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
-            <Typewriter
-              segments={[
-                { text: 'We Design. We Optimize. ' },
-                {
-                  text: 'We Grow.',
-                  className: 'bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent',
-                },
-              ]}
-            />
+          <h1 className="font-heading font-bold leading-tight text-white">
+            <ParticleTextEffect lines={['We Design. We Optimize.', 'We Grow.']} />
           </h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -132,18 +123,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-bg-alt px-6 py-24">
-        <Reveal>
-          <SectionHeading eyebrow="Our Work" title="Recent Wins for Real Brands" />
-        </Reveal>
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PORTFOLIO.slice(0, 3).map((item, i) => (
-            <Reveal key={item.slug} delay={i * 0.1}>
-              <PortfolioCard item={item} />
-            </Reveal>
-          ))}
+      <section className="bg-bg-alt py-24">
+        <div className="px-6">
+          <Reveal>
+            <SectionHeading eyebrow="Our Work" title="Recent Wins for Real Brands" />
+          </Reveal>
         </div>
-        <div className="mt-12 text-center">
+        <CircularGallery />
+        <div className="px-6 text-center">
           <Link href="/portfolio" className="inline-flex items-center gap-2 text-brand-green transition-colors hover:text-white">
             View full portfolio <ArrowRight size={18} />
           </Link>

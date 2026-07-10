@@ -15,6 +15,8 @@ import MatrixRain from '@/components/MatrixRain'
 import ParticleTextEffect from '@/components/ParticleTextEffect'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import ProcessSection from '@/components/ProcessSection'
+import PricingSection from '@/components/PricingSection'
+import GravityBadges from '@/components/GravityBadges'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
@@ -90,6 +92,7 @@ export default function Home() {
             </CTAButton>
           </motion.div>
         </motion.div>
+        <GravityBadges />
       </motion.section>
 
       <section className="border-y border-white/10 bg-bg-alt px-6 py-12">
@@ -129,6 +132,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <PricingSection />
 
       <ProcessSection />
 

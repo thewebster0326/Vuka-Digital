@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export REPO=/home/vukadigital/repositories/Vuka-Digital
+    - export REPO=/home/vukadigital/repositories/Vuka-Digital/vuka-digital
     - cd $REPO && npm install --omit=dev
     - cd $REPO && npm run build
     - mkdir -p $REPO/.next/standalone/.next

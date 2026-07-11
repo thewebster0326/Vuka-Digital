@@ -9,7 +9,7 @@ export default function Logo({ className = '' }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`}>
       <Image
-        src="/logo.png"
+        src="/favicon.png"
         alt="Vuka Digital"
         width={48}
         height={48}

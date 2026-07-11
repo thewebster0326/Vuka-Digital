@@ -115,7 +115,7 @@ export default function ContactPageClient() {
             <MessageCircle className="text-brand-green" size={24} />
             <div>
               <p className="font-heading text-white">WhatsApp</p>
-              <p className="text-sm text-white/60">+27 72 833 1515</p>
+              <p className="text-sm text-white/60">Chat with us</p>
             </div>
           </a>
           <a

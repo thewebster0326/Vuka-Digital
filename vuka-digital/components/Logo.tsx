@@ -11,10 +11,10 @@ export default function Logo({ className = '' }: LogoProps) {
       <Image
         src="/favicon.png"
         alt="Vuka Digital"
-        width={48}
-        height={48}
+        width={56}
+        height={56}
         priority
-        className="h-10 w-10 object-contain sm:h-12 sm:w-12"
+        className="h-12 w-12 object-contain sm:h-14 sm:w-14"
       />
       <span className="font-heading text-lg font-bold tracking-wide text-white sm:text-xl">
         VUKA <span className="text-brand-green">DIGITAL</span>

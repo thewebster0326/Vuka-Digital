@@ -39,18 +39,20 @@ export default function GravityBadges() {
       const height = container.clientHeight
 
       const engine = M.Engine.create()
-      engine.gravity.y = 1
+      engine.gravity.y = 0.6
 
       const elements = badgeRefs.current.filter((el): el is HTMLAnchorElement => !!el)
       const bodies = elements.map((el, i) => {
         const w = el.offsetWidth
         const h = el.offsetHeight
-        return M.Bodies.rectangle(Math.random() * (width - w) + w / 2, -200 - i * 140, w, h, {
-          restitution: 0.45,
-          friction: 0.35,
-          angle: (Math.random() - 0.5) * 0.6,
+        const body = M.Bodies.rectangle(Math.random() * (width - w) + w / 2, -100 - i * 70, w, h, {
+          restitution: 0.2,
+          friction: 0.4,
+          frictionAir: 0.025,
           chamfer: { radius: Math.min(10, h / 2 - 1) },
         })
+        M.Body.setInertia(body, Infinity)
+        return body
       })
 
       const ground = M.Bodies.rectangle(width / 2, height + 25, width * 2, 50, { isStatic: true })

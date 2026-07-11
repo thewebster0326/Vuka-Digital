@@ -17,6 +17,7 @@ import WhyChooseUs from '@/components/WhyChooseUs'
 import ProcessSection from '@/components/ProcessSection'
 import PricingSection from '@/components/PricingSection'
 import GravityBadges from '@/components/GravityBadges'
+import MarqueeBanner from '@/components/MarqueeBanner'
 import Reveal from '@/components/Reveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { SERVICES } from '@/lib/data/services'
@@ -94,6 +95,8 @@ export default function Home() {
         </motion.div>
         <GravityBadges />
       </motion.section>
+
+      <MarqueeBanner />
 
       <section className="border-y border-white/10 bg-bg-alt px-6 py-12">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 sm:grid-cols-4">

@@ -8,6 +8,9 @@ import { TESTIMONIALS, type Testimonial } from '@/lib/data/testimonials'
 const STACK_DEPTH = 3
 const SWIPE_THRESHOLD = 100
 const AUTO_ADVANCE_MS = 5000
+const FLIP_DURATION_MS = 550
+const FLIP_TRANSITION = { duration: FLIP_DURATION_MS / 1000, ease: [0.45, 0, 0.55, 1] as const }
+const SETTLE_TRANSITION = { duration: 0.45, ease: [0.16, 1, 0.3, 1] as const }
 
 const BORDER_BY_DEPTH = ['border-brand-green/40', 'border-brand-blue/25', 'border-white/10']
 
@@ -35,12 +38,21 @@ function StackCard({ testimonial, depth }: { testimonial: Testimonial; depth: nu
 
 function TestimonialStack({ items }: { items: Testimonial[] }) {
   const [order, setOrder] = useState(items.map((_, i) => i))
+  const [flipping, setFlipping] = useState(false)
 
-  const advance = () => setOrder((current) => [...current.slice(1), current[0]])
+  const advance = () => {
+    if (flipping) return
+    setFlipping(true)
+    setTimeout(() => {
+      setOrder((current) => [...current.slice(1), current[0]])
+      setFlipping(false)
+    }, FLIP_DURATION_MS)
+  }
 
   useEffect(() => {
     const id = setInterval(advance, AUTO_ADVANCE_MS)
     return () => clearInterval(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
@@ -48,22 +60,34 @@ function TestimonialStack({ items }: { items: Testimonial[] }) {
   }
 
   return (
-    <div className="relative h-72 sm:h-64">
+    <div className="relative h-72 sm:h-64" style={{ perspective: 1200 }}>
       {order.map((itemIndex, depth) => {
         const isFront = depth === 0
+        const isFlippingOut = isFront && flipping
         return (
           <motion.div
             key={itemIndex}
             className="absolute inset-0"
-            style={{ zIndex: STACK_DEPTH - depth, cursor: isFront ? 'grab' : 'default' }}
-            animate={{
-              scale: 1 - depth * 0.06,
-              y: depth * 16,
-              x: 0,
-              opacity: 1 - depth * 0.18,
+            style={{
+              zIndex: STACK_DEPTH - depth,
+              cursor: isFront ? 'grab' : 'default',
+              transformOrigin: 'left center',
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden',
             }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            drag={isFront ? 'x' : false}
+            animate={
+              isFlippingOut
+                ? { rotateY: -115, opacity: 0, scale: 0.92, x: -20, y: 0 }
+                : {
+                    rotateY: 0,
+                    scale: 1 - depth * 0.06,
+                    y: depth * 16,
+                    x: 0,
+                    opacity: 1 - depth * 0.18,
+                  }
+            }
+            transition={isFlippingOut ? FLIP_TRANSITION : SETTLE_TRANSITION}
+            drag={isFront && !flipping ? 'x' : false}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.6}
             whileDrag={{ cursor: 'grabbing' }}

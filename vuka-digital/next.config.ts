@@ -4,6 +4,12 @@ import path from "path";
 const nextConfig: NextConfig = {
   output: "standalone",
   outputFileTracingRoot: path.join(__dirname),
+  // The production host has a tight memory limit; types are already
+  // checked locally on every change, so skip re-checking during this build.
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  productionBrowserSourceMaps: false,
   images: {
     remotePatterns: [
       {

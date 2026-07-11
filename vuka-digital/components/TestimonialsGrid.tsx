@@ -68,9 +68,9 @@ function TestimonialStack({ items }: { items: Testimonial[] }) {
           <motion.div
             key={itemIndex}
             className="absolute inset-0"
+            data-cursor={isFront ? 'drag' : undefined}
             style={{
               zIndex: STACK_DEPTH - depth,
-              cursor: isFront ? 'grab' : 'default',
               transformOrigin: 'left center',
               transformStyle: 'preserve-3d',
               backfaceVisibility: 'hidden',
@@ -90,7 +90,6 @@ function TestimonialStack({ items }: { items: Testimonial[] }) {
             drag={isFront && !flipping ? 'x' : false}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.6}
-            whileDrag={{ cursor: 'grabbing' }}
             onDragEnd={handleDragEnd}
           >
             <StackCard testimonial={items[itemIndex]} depth={depth} />

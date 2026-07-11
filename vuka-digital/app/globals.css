@@ -18,6 +18,23 @@ body {
   color: #05070a;
 }
 
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role='button'],
+  label,
+  select {
+    cursor: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable='true'] {
+    cursor: text;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

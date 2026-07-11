@@ -14,7 +14,7 @@ const BORDER_BY_DEPTH = ['border-brand-green/40', 'border-brand-blue/25', 'borde
 function StackCard({ testimonial, depth }: { testimonial: Testimonial; depth: number }) {
   return (
     <div
-      className={`flex h-full select-none flex-col gap-4 rounded-2xl border ${BORDER_BY_DEPTH[depth]} bg-white/[0.03] p-6`}
+      className={`flex h-full select-none flex-col gap-4 rounded-2xl border ${BORDER_BY_DEPTH[depth]} bg-bg-alt p-6 shadow-xl shadow-black/40`}
     >
       <div className="flex items-center justify-between">
         <div className="flex gap-0.5">

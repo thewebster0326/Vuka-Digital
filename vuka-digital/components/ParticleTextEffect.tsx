@@ -79,7 +79,8 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
 
       const imageData = offCtx.getImageData(0, 0, width, height)
       const particles: Particle[] = []
-      const gap = width < 500 ? 1.5 : 2
+      const gap = width < 500 ? 3 : 4
+      const pixelSize = gap * 0.85
       for (let y = 0; y < height; y += gap) {
         for (let x = 0; x < width; x += gap) {
           const alpha = imageData.data[(Math.floor(y) * width + Math.floor(x)) * 4 + 3]
@@ -91,7 +92,7 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
               targetY: y,
               vx: 0,
               vy: 0,
-              size: Math.random() * 1.1 + 1.3,
+              size: pixelSize,
               color: '#FFFFFF',
             })
           }
@@ -138,9 +139,7 @@ export default function ParticleTextEffect({ lines, className = '' }: ParticleTe
         p.y += p.vy
 
         ctx.fillStyle = p.color
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size)
       }
       frame = requestAnimationFrame(animate)
     }

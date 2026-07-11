@@ -64,7 +64,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{ scale: heroScale }}
-          className="mx-auto max-w-3xl text-center"
+          className="relative z-10 mx-auto max-w-3xl text-center"
         >
           <span className="mb-6 inline-block rounded-full border border-brand-green/40 px-4 py-1 text-xs uppercase tracking-[0.3em] text-brand-green">
             Digital Marketing Agency
@@ -76,7 +76,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.6 }}
-            className="mx-auto mt-6 max-w-xl text-white/70"
+            className="mx-auto mt-6 max-w-xl text-white"
           >
             Vuka Digital builds websites, brands, and campaigns that wake up your online
             presence and turn attention into customers.

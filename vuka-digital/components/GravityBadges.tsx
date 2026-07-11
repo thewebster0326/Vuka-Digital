@@ -102,14 +102,13 @@ export default function GravityBadges() {
           ref={(el) => {
             badgeRefs.current[i] = el
           }}
-          className={`pointer-events-auto absolute left-0 top-0 whitespace-nowrap rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-sm transition-all duration-300 ${
+          className={`pointer-events-auto absolute left-0 top-0 whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold text-bg shadow-lg transition-transform duration-300 hover:scale-105 ${
             ready ? 'opacity-100' : 'opacity-0'
-          } ${
-            i % 2 === 0
-              ? 'hover:border-brand-blue hover:bg-brand-blue hover:text-bg'
-              : 'hover:border-brand-green hover:bg-brand-green hover:text-bg'
           }`}
-          style={{ willChange: 'transform' }}
+          style={{
+            willChange: 'transform',
+            background: 'linear-gradient(90deg, #2E7CF6 50%, #39FF6A 50%)',
+          }}
         >
           {badge.label}
         </Link>

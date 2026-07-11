@@ -8,7 +8,7 @@ import CTAButton from '@/components/CTAButton'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
 import PortfolioCard from '@/components/PortfolioCard'
-import TestimonialsCarousel from '@/components/TestimonialsCarousel'
+import TestimonialsGrid from '@/components/TestimonialsGrid'
 import Hero3DWrapper from '@/components/Hero3DWrapper'
 import StarfieldBackgroundWrapper from '@/components/StarfieldBackgroundWrapper'
 import MatrixRain from '@/components/MatrixRain'
@@ -161,11 +161,9 @@ export default function Home() {
         <Reveal>
           <SectionHeading eyebrow="Testimonials" title="What Our Clients Say" />
         </Reveal>
-        <Reveal delay={0.15}>
-          <div className="mt-14">
-            <TestimonialsCarousel />
-          </div>
-        </Reveal>
+        <div className="mt-14">
+          <TestimonialsGrid />
+        </div>
       </section>
 
       <Reveal>

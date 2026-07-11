@@ -30,4 +30,9 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'Nova Realty',
     quote: "They treated our ad budget like it was their own money. Cost per lead dropped and quality went up.",
   },
+  {
+    name: 'Ayanda Zulu',
+    company: 'Ubuntu Coffee Roasters',
+    quote: "Our new logo and business profile look incredibly professional. Clients take us seriously in a way they did not before.",
+  },
 ]

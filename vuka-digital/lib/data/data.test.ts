@@ -35,9 +35,9 @@ describe('PORTFOLIO data', () => {
 })
 
 describe('TESTIMONIALS data', () => {
-  it('contains between 4 and 5 items', () => {
+  it('contains between 4 and 6 items', () => {
     expect(TESTIMONIALS.length).toBeGreaterThanOrEqual(4)
-    expect(TESTIMONIALS.length).toBeLessThanOrEqual(5)
+    expect(TESTIMONIALS.length).toBeLessThanOrEqual(6)
   })
 
   it('every testimonial has a name, company, and quote', () => {

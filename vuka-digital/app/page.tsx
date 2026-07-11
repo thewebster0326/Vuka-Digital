@@ -42,7 +42,7 @@ export default function Home() {
       <motion.section
         ref={heroRef}
         style={{ opacity: heroOpacity }}
-        className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
+        className="relative flex min-h-screen items-center overflow-hidden px-6 pb-28 pt-32"
       >
         <div className="absolute inset-0 -z-30 opacity-40">
           <MatrixRain />

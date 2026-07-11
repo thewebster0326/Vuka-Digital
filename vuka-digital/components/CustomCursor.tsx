@@ -23,9 +23,7 @@ const RING_STYLE: Record<Variant, { border: string; background: string }> = {
 }
 
 export default function CustomCursor() {
-  const [enabled] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
-  )
+  const [enabled, setEnabled] = useState(false)
   const [variant, setVariant] = useState<Variant>('default')
 
   const mouseX = useMotionValue(-100)
@@ -34,7 +32,9 @@ export default function CustomCursor() {
   const ringY = useSpring(mouseY, { stiffness: 280, damping: 26, mass: 0.5 })
 
   useEffect(() => {
-    if (!enabled) return
+    if (!window.matchMedia('(pointer: fine)').matches) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- deliberate post-hydration flip to avoid an SSR/client markup mismatch
+    setEnabled(true)
 
     let pressed = false
 
@@ -71,7 +71,7 @@ export default function CustomCursor() {
       window.removeEventListener('mouseup', handleUp)
       document.removeEventListener('mouseleave', handleLeave)
     }
-  }, [enabled, mouseX, mouseY])
+  }, [mouseX, mouseY])
 
   if (!enabled) return null
 

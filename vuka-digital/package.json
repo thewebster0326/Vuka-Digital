@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "postinstall": "node -e \"if(process.env.NODE_ENV==='production'){require('child_process').execFileSync(process.execPath,['/home/vukadigital/repositories/Vuka-Digital/vuka-digital/scripts/cpanel-postinstall.js'],{stdio:'inherit'})}\""
+    "postinstall": "node -e \"var p='/home/vukadigital/repositories/Vuka-Digital/vuka-digital/scripts/cpanel-postinstall.js';if(require('fs').existsSync(p)){require('child_process').execFileSync(process.execPath,[p],{stdio:'inherit'})}\""
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

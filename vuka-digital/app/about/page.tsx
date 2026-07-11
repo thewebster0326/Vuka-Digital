@@ -53,7 +53,7 @@ export default function AboutPage() {
         <Reveal delay={0.1}>
           <div className="relative mx-auto mt-16 h-64 max-w-5xl overflow-hidden rounded-2xl sm:h-80">
             <Image
-              src="https://picsum.photos/seed/vuka-team-workspace/1600/900"
+              src="https://picsum.photos/seed/vuka-agency-creative-desk/1600/900"
               alt="The Vuka Digital team collaborating"
               fill
               sizes="(max-width: 1024px) 100vw, 1024px"

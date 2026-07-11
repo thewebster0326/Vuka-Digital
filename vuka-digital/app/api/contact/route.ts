@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   try {
     await resend.emails.send({
       from: 'Vuka Digital Website <onboarding@resend.dev>',
-      to: 'info@vukadigital.co.za',
+      to: 'info@vuka-digital.co.za',
       replyTo: email,
       subject: `New enquiry from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,

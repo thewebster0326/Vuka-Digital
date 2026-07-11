@@ -119,13 +119,13 @@ export default function ContactPageClient() {
             </div>
           </a>
           <a
-            href="mailto:info@vukadigital.co.za"
+            href="mailto:info@vuka-digital.co.za"
             className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50"
           >
             <Mail className="text-brand-blue" size={24} />
             <div>
               <p className="font-heading text-white">Email</p>
-              <p className="text-sm text-white/60">info@vukadigital.co.za</p>
+              <p className="text-sm text-white/60">info@vuka-digital.co.za</p>
             </div>
           </a>
           <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5">

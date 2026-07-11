@@ -124,7 +124,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail size={18} className="shrink-0 text-brand-green" />
-              <a href="mailto:info@vukadigital.co.za" className="hover:text-white">info@vukadigital.co.za</a>
+              <a href="mailto:info@vuka-digital.co.za" className="hover:text-white">info@vuka-digital.co.za</a>
             </li>
           </ul>
         </div>

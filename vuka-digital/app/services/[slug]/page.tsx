@@ -48,7 +48,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       '@type': 'Organization',
       name: 'Vuka Digital',
       telephone: '+27-72-037-3679',
-      email: 'info@vukadigital.co.za',
+      email: 'info@vuka-digital.co.za',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '30 New Time Square, 30 Ernest Oppenheimer',

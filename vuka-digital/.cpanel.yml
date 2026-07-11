@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    # Replace YOUR_CPANEL_USERNAME below with your actual cPanel username,
+    # and match the path to wherever you set the repo's "Repository Path".
+    - export REPO=/home/YOUR_CPANEL_USERNAME/repositories/vuka-digital
+    - cd $REPO && npm install --omit=dev
+    - cd $REPO && npm run build
+    - mkdir -p $REPO/.next/standalone/.next
+    - cp -R $REPO/public $REPO/.next/standalone/public
+    - cp -R $REPO/.next/static $REPO/.next/standalone/.next/static
+    - mkdir -p $REPO/tmp
+    - touch $REPO/tmp/restart.txt

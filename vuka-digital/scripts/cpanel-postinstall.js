@@ -4,12 +4,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 const { execSync } = require('child_process')
 const fs = require('fs')
+const path = require('path')
 
-execSync('npx next build', { stdio: 'inherit' })
+const ROOT = '/home/vukadigital/repositories/Vuka-Digital/vuka-digital'
 
-fs.cpSync('public', '.next/standalone/public', { recursive: true })
-fs.cpSync('.next/static', '.next/standalone/.next/static', { recursive: true })
-fs.mkdirSync('tmp', { recursive: true })
-fs.writeFileSync('tmp/restart.txt', '')
+execSync('npx next build', { cwd: ROOT, stdio: 'inherit' })
+
+fs.cpSync(path.join(ROOT, 'public'), path.join(ROOT, '.next/standalone/public'), { recursive: true })
+fs.cpSync(path.join(ROOT, '.next/static'), path.join(ROOT, '.next/standalone/.next/static'), {
+  recursive: true,
+})
+fs.mkdirSync(path.join(ROOT, 'tmp'), { recursive: true })
+fs.writeFileSync(path.join(ROOT, 'tmp/restart.txt'), '')
 
 console.log('cPanel postinstall: build complete, static assets copied, restart triggered.')
